@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.bin_info"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.bin_info"
@@ -45,4 +45,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Network
+    implementation(libs.network.retrofit)
+    implementation(libs.network.converterGson)
+
+    // Dependency Injection
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.navigation)
 }
