@@ -1,4 +1,4 @@
-package com.example.bin_info.info.data
+package com.example.bin_info.info.data.impl
 
 import com.example.bin_info.info.data.dto.BINInfoRequest
 import com.example.bin_info.info.data.dto.BINInfoResponse

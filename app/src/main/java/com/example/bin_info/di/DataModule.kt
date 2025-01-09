@@ -30,6 +30,10 @@ val dataModule = module {
             .create(BINlistAPI::class.java)
     }
 
+    single {
+        Gson()
+    }
+
     // Converters
     single<CoroutineDispatcher>(named("ioDispatcher")) {
         Dispatchers.IO
