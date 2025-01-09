@@ -1,6 +1,8 @@
 package com.example.bin_info.util
 
-sealed class Resource<T>(val data: T? = null, val message: String? = null) {
+import com.example.bin_info.info.domain.model.ErrorType
+
+sealed class Resource<T>(val data: T? = null, val errorType: ErrorType? = null) {
     class Success<T>(data: T) : Resource<T>(data)
-    class Error<T>(message: String, data: T? = null) : Resource<T>(data, message)
+    class Error<T>(errorType: ErrorType) : Resource<T>(null, errorType)
 }
