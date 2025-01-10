@@ -1,8 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.BIN_info" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Фон -->
+        <item name="android:colorBackground">@color/white</item>
+
+        <!-- Цвет фона -->
+        <item name="jcBackgroundColor">@color/white</item>
+
+        <!-- Цвет основного текста -->
+        <item name="jcMainTextColor">@color/black</item>
+
+        <!-- Цвет hint текста для EditText -->
+        <item name="jcHintTextColor">@color/gray</item>
+
+        <!-- Цвет фона для EditText -->
+        <item name="jcEditTextBackgroundColor">@color/light_gray</item>
+
+        <!-- Цвет подсказки для InputEditText -->
+        <item name="jcEditTextColorHint">@color/blue</item>
     </style>
 
     <style name="Theme.BIN_info" parent="Base.Theme.BIN_info" />

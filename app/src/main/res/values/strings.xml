@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BIN_info</string>
+    <string name="enter_request_hint">Введите номер карты</string>
+    <string name="info_title">Информация по номеру карты</string>
 </resources>
