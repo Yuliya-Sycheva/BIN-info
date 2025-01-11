@@ -6,6 +6,7 @@ import com.example.bin_info.info.data.network.RetrofitNetworkClient
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -24,7 +25,6 @@ val dataModule = module {
     single<BINlistAPI> {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(BINlistAPI::class.java)

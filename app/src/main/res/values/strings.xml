@@ -2,4 +2,8 @@
     <string name="app_name">BIN_info</string>
     <string name="enter_request_hint">Введите номер карты</string>
     <string name="info_title">Информация по номеру карты</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="limit_error">Превышен лимит запросов</string>
+    <string name="nothing_found">Ничего не найдено</string>
 </resources>

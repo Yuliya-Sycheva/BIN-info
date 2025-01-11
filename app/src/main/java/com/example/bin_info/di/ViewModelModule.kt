@@ -1,4 +1,12 @@
 package com.example.bin_info.di
 
-class ViewModelModule {
+import com.example.bin_info.info.presentation.InfoViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+
+val viewModelModule = module {
+
+    viewModel {
+        InfoViewModel(infoInteractor = get())
+    }
 }

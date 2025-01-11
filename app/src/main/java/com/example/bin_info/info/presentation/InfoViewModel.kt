@@ -22,7 +22,7 @@ class InfoViewModel(
     private val stateLiveData =
         MutableLiveData<InfoScreenState>(InfoScreenState.Default)  //можно тут передать состояние по умолчанию??
 
-    fun observeState(): LiveData<InfoScreenState> = stateLiveData
+    fun getStateLiveData(): LiveData<InfoScreenState> = stateLiveData
 
     private var latestSearchNumber: String? = null
 
@@ -43,7 +43,7 @@ class InfoViewModel(
         }
     }
 
-    fun searchInfo(newSearchNumber: String) {
+    private fun searchInfo(newSearchNumber: String) {
         if (newSearchNumber.isBlank()
         ) {  // чтобы после крестика не выскакивало, что ничего не нашлось
             return
@@ -57,6 +57,7 @@ class InfoViewModel(
             infoInteractor.searchInfo(newSearchNumber)
                 .collect { pair ->
                     processResult(pair.first, pair.second)
+                    Log.d("MainActivity", "result 200: ")
                 }
         }
     }
