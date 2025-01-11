@@ -26,7 +26,7 @@ class RetrofitNetworkClient(
         } else {
             return withContext(ioDispatcher) {
                 try {
-                    val apiResponse = api.getBinInfo(BIN)
+                    val apiResponse = api.getBinInfo(dto.number)
                     apiResponse.apply { resultCode = ResultCode.SUCCESS }
                 } catch (ex: HttpException) {
                     Log.e(TAG, "HTTP error: ${ex.message()}", ex)
@@ -60,6 +60,5 @@ class RetrofitNetworkClient(
 
     companion object {
         private const val TAG = "RetrofitNetworkClient"
-        private const val BIN = "45717360"
     }
 }

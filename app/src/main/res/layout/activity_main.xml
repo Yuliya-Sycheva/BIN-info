@@ -38,4 +38,89 @@
             android:backgroundTint="@color/black"
             android:src="@drawable/ic_clear" />
     </FrameLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_scheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Scheme: "
+                android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+            <TextView
+                android:id="@+id/tv_card_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Card type: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_card_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Card brand: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_prepaid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Is card prepaid: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Country: "
+                android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+            <TextView
+                android:id="@+id/tv_coordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Coordinates: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Bank Name: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_bank_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Bank URL: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_bank_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Bank Phone: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tv_bank_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Bank City: "
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

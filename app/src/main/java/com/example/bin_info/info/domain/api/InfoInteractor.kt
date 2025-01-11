@@ -5,5 +5,5 @@ import com.example.bin_info.info.domain.model.Info
 import kotlinx.coroutines.flow.Flow
 
 interface InfoInteractor {
-    fun searchInfo(number: Byte): Flow<Pair<Info?, ErrorType?>>
+    fun searchInfo(number: String): Flow<Pair<Info?, ErrorType?>>
 }

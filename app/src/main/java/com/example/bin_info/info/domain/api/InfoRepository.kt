@@ -5,5 +5,5 @@ import com.example.bin_info.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface InfoRepository {
-    fun searchInfo(number: Byte): Flow<Resource<Info>>
+    fun searchInfo(number: String): Flow<Resource<Info>>
 }

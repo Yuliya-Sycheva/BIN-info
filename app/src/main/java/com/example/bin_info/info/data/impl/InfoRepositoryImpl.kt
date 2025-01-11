@@ -18,7 +18,7 @@ class InfoRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
 ) : InfoRepository {
 
-    override fun searchInfo(number: Byte): Flow<Resource<Info>> = flow {
+    override fun searchInfo(number: String): Flow<Resource<Info>> = flow {
         val response = networkClient.doRequest(BINInfoRequest(number))
         when (response.resultCode) {
             ResultCode.SUCCESS -> {

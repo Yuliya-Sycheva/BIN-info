@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class InfoInteractorImpl(private val repository: InfoRepository) : InfoInteractor {
-    override fun searchInfo(number: Byte): Flow<Pair<Info?, ErrorType?>> {
+    override fun searchInfo(number: String): Flow<Pair<Info?, ErrorType?>> {
         return repository.searchInfo(number).map { result ->
             when (result) {
                 is Resource.Success -> {
