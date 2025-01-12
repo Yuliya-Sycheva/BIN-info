@@ -6,29 +6,43 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.bin_info.R
-import com.example.bin_info.databinding.ActivityMainBinding
+import com.example.bin_info.databinding.FragmentInfoBinding
 import com.example.bin_info.info.domain.model.Info
 import com.example.bin_info.info.presentation.InfoViewModel
 import com.example.bin_info.info.ui.models.InfoScreenState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class InfoFragment : Fragment() {
+    private var _binding: FragmentInfoBinding? = null
+    private val binding get() = _binding!!
     private val infoViewModel by viewModel<InfoViewModel>()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentInfoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initQueryChangeListener()
         initClickListeners()
+        binding.tvCardsInHistory.setOnClickListener {
+            openHistory()
+        }
 
-        infoViewModel.getStateLiveData().observe(this) { renderState(it) }
+        infoViewModel.getStateLiveData().observe(viewLifecycleOwner) { renderState(it) }
     }
 
     private fun initQueryChangeListener() {
@@ -154,7 +168,7 @@ class MainActivity : AppCompatActivity() {
                     formatCoordinates(info.countryLatitude, info.countryLongitude)
                 )
             tvCoordinates.setOnClickListener {
-                handleCoordinatesClick(this@MainActivity, info)
+                handleCoordinatesClick(requireContext(), info)
             }
             tvBankName.text = getString(R.string.bank, info.bankName ?: "-")
             tvBankUrl.text = getString(R.string.bank_url, info.bankUrl ?: "-")
@@ -186,5 +200,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(context, R.string.invalid_coordinates, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun openHistory() {
+        val action = InfoFragmentDirections.actionInfoFragmentToHistoryFragment()
+        findNavController().navigate(action)
     }
 }

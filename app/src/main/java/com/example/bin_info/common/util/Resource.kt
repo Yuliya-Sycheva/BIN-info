@@ -1,4 +1,4 @@
-package com.example.bin_info.util
+package com.example.bin_info.common.util
 
 import com.example.bin_info.info.domain.model.ErrorType
 
