@@ -1,10 +1,13 @@
 package com.example.bin_info.info.ui
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.bin_info.R
@@ -22,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Инициализация обработчиков
         initQueryChangeListener()
         initClickListeners()
 
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     binding.ivClearRequest.isVisible = true
 
                 }
-                infoViewModel.searchDebounce(s.toString())  //searchDebounce вместо onQueryChange
+                infoViewModel.searchDebounce(s.toString())
             }
         })
     }
@@ -68,8 +70,12 @@ class MainActivity : AppCompatActivity() {
             false
         }
         binding.ivClearRequest.setOnClickListener {
-            binding.etSearchRequest.apply {
-                setText("")
+            with(binding) {
+                etSearchRequest.apply {
+                    setText("")
+                }
+                cvSearchResult.isVisible = false
+                tvError.isVisible = false
             }
         }
     }
@@ -132,19 +138,52 @@ class MainActivity : AppCompatActivity() {
             progressBar.isVisible = false
             cvSearchResult.isVisible = true
             tvError.isVisible = false
-            tvScheme.setFieldText(info.scheme)
-            tvCardType.setFieldText(info.type)
-            tvCardBrand.setFieldText(info.brand)
-            tvPrepaid.setFieldText(info.prepaid.toString()) //переделать
-            tvCountry.setFieldText(info.countryName)
-            tvCoordinates.setFieldText(info.countryLatitude.toString()) //исправить
-            tvBankName.setFieldText(info.bankName)
-            tvBankUrl.setFieldText(info.bankUrl)
-            tvBankCity.setFieldText(info.bankCity)
+            tvScheme.text = getString(R.string.card_type, info.scheme ?: "-")
+            tvCardType.text = getString(R.string.card_type, info.type ?: "-")
+            tvCardBrand.text = getString(R.string.card_brand, info.brand ?: "-")
+            tvPrepaid.text =
+                getString(
+                    R.string.prepaid,
+                    if (info.prepaid == true) getString(R.string.yes) else getString(R.string.no)
+                )
+            tvCountry.text = getString(R.string.country, info.countryName ?: "-")
+            tvCoordinates.text =
+                getString(
+                    R.string.coordinates,
+                    formatCoordinates(info.countryLatitude, info.countryLongitude)
+                )
+            tvCoordinates.setOnClickListener {
+                handleCoordinatesClick(this@MainActivity, info)
+            }
+            tvBankName.text = getString(R.string.bank, info.bankName ?: "-")
+            tvBankUrl.text = getString(R.string.bank_url, info.bankUrl ?: "-")
+            tvBankPhone.text = getString(R.string.bank_phone, info.bankPhone ?: "-")
+            tvBankCity.text = getString(R.string.bank_city, info.bankCity ?: "-")
         }
     }
 
-    private fun TextView.setFieldText(text: String?): String {
-        return text ?: "-"
+    private fun formatCoordinates(latitude: Double?, longitude: Double?): String {
+        return if (latitude != null && longitude != null) {
+            "Lat: $latitude, Lon: $longitude"
+        } else {
+            "-"
+        }
+    }
+    private fun handleCoordinatesClick(context: Context, info: Info) {
+        val latitude = info.countryLatitude
+        val longitude = info.countryLongitude
+
+        if (latitude != null && longitude != null) {
+            val geoUri = "geo:$latitude,$longitude?q=$latitude,$longitude"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+            
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            } else {
+                Toast.makeText(context, R.string.no_maps_app_found, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, R.string.invalid_coordinates, Toast.LENGTH_SHORT).show()
+        }
     }
 }

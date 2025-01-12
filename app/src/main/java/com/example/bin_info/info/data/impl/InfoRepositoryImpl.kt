@@ -44,7 +44,6 @@ fun BINInfoResponse.isAllFieldsNull(): Boolean {
     return scheme == null &&
             type == null &&
             brand == null &&
-            prepaid == null &&
             country == null &&
             bank == null
 }

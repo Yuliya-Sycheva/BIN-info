@@ -6,4 +6,19 @@
     <string name="server_error">Ошибка сервера</string>
     <string name="limit_error">Превышен лимит запросов</string>
     <string name="nothing_found">Ничего не найдено</string>
+    <string name="card_type">Тип карты: %1$s</string>
+    <string name="card_brand">Бренд: %1$s</string>
+    <string name="prepaid">Предоплаченная: %1$s</string>
+    <string name="country">Страна: %1$s</string>
+    <string name="coordinates">Координаты: %1$s</string>
+    <string name="bank">Банк: %1$s</string>
+    <string name="bank_url">URL банка: %1$s</string>
+    <string name="bank_phone">Телефон банка: %1$s</string>
+    <string name="bank_city">Город банка: %1$s</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="no_maps_app_found">No Maps app found</string>
+    <string name="invalid_coordinates">Invalid coordinates</string>
+
 </resources>

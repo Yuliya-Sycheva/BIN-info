@@ -1,8 +1,10 @@
 package com.example.bin_info.info.data.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class BankInfo(
-    val name: String?, // Название банка
-    val url: String?, // Сайт
-    val phone: String?, // Телефон
-    val city: String? // Город
+    @SerializedName("name") val name: String?,
+    @SerializedName("url") val url: String?,
+    @SerializedName("phone") val phone: String?,
+    @SerializedName("city") val city: String?
 )

@@ -15,7 +15,5 @@
         <!-- Цвет фона для EditText -->
         <item name="jcEditTextBackgroundColor">@color/gray</item>
 
-        <!-- Цвет подсказки для InputEditText -->
-        <item name="jcEditTextColorHint">@color/black</item>
     </style>
 </resources>
