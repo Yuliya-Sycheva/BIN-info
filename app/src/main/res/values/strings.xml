@@ -17,6 +17,7 @@
     <string name="bank_city">Город банка: %1$s</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="cards_in_history">Посмотреть сохраненные карты </string>
 
     <string name="no_maps_app_found">No Maps app found</string>
     <string name="invalid_coordinates">Invalid coordinates</string>

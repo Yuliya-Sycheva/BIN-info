@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             progressBar.isVisible = true
             cvSearchResult.isVisible = false
+            tvError.isVisible = false
         }
     }
 
@@ -176,7 +177,7 @@ class MainActivity : AppCompatActivity() {
         if (latitude != null && longitude != null) {
             val geoUri = "geo:$latitude,$longitude?q=$latitude,$longitude"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
-            
+
             if (intent.resolveActivity(context.packageManager) != null) {
                 context.startActivity(intent)
             } else {

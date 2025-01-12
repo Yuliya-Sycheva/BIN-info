@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.BIN_info" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BIN_info" parent="Theme.Material3.DayNight.NoActionBar"/>
+    <style name="Theme.BIN_info" parent="Base.Theme.BIN_info">
         <!-- Фон -->
         <item name="android:colorBackground">@color/white</item>
 
@@ -9,6 +10,10 @@
         <!-- Цвет основного текста -->
         <item name="jcMainTextColor">@color/black</item>
 
+        <!-- Строка состояния --> -->
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
         <!-- Цвет hint текста для EditText -->
         <item name="jcHintTextColor">@color/gray</item>
 
@@ -16,6 +21,4 @@
         <item name="jcEditTextBackgroundColor">@color/light_gray</item>
 
     </style>
-
-    <style name="Theme.BIN_info" parent="Base.Theme.BIN_info" />
 </resources>

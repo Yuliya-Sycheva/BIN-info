@@ -54,81 +54,91 @@
 
             <TextView
                 android:id="@+id/tv_scheme"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Scheme: " />
 
             <TextView
                 android:id="@+id/tv_card_type"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Card type: " />
 
             <TextView
                 android:id="@+id/tv_card_brand"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Card brand: " />
 
             <TextView
                 android:id="@+id/tv_prepaid"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Is card prepaid: " />
 
             <TextView
                 android:id="@+id/tv_country"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Country: " />
 
             <TextView
                 android:id="@+id/tv_coordinates"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Coordinates: " />
 
             <TextView
                 android:id="@+id/tv_bank_name"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Bank Name: " />
 
             <TextView
                 android:id="@+id/tv_bank_url"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Bank URL: " />
 
             <TextView
                 android:id="@+id/tv_bank_phone"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Bank Phone: " />
 
             <TextView
                 android:id="@+id/tv_bank_city"
-                style="@style/TextRegular16"
+                style="@style/Regular_16_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_micro"
+                android:textColor="?attr/jcMainTextColor"
                 tools:text="Bank City: " />
 
         </LinearLayout>
@@ -151,4 +161,12 @@
         android:layout_marginTop="@dimen/margin_large"
         android:layout_marginBottom="@dimen/margin_standard"
         android:indeterminateTint="@color/lilac" />
+
+    <TextView
+        android:id="@+id/tv_cards_in_history"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/header_height"
+        android:text="@string/cards_in_history" />
 </LinearLayout>

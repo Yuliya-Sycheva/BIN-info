@@ -1,10 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.BIN_info" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.BIN_info" parent="Base.Theme.BIN_info">
         <!-- Фон -->
         <item name="android:colorBackground">@color/black</item>
 
         <!-- Цвет фона -->
         <item name="jcBackgroundColor">@color/black</item>
+
+        <!-- Строка состояния -->
+        <item name="colorPrimaryDark">@color/black</item>
 
         <!-- Цвет основного текста -->
         <item name="jcMainTextColor">@color/white</item>
