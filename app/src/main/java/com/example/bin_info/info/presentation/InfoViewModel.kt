@@ -1,6 +1,5 @@
 package com.example.bin_info.info.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,7 @@ class InfoViewModel(
     private var searchDebounceJob: Job? = null
 
     private val stateLiveData =
-        MutableLiveData<InfoScreenState>(InfoScreenState.Default)  //можно тут передать состояние по умолчанию??
+        MutableLiveData<InfoScreenState>(InfoScreenState.Default)
 
     fun getStateLiveData(): LiveData<InfoScreenState> = stateLiveData
 
@@ -54,10 +53,9 @@ class InfoViewModel(
         renderState(InfoScreenState.Loading)
 
         viewModelScope.launch {
-            infoInteractor.searchInfo(newSearchNumber)
+            infoInteractor.searchInfo(newSearchNumber.replace(" ", "").trim())
                 .collect { pair ->
                     processResult(pair.first, pair.second)
-                    Log.d("MainActivity", "result 200: ")
                 }
         }
     }
@@ -87,12 +85,6 @@ class InfoViewModel(
             ErrorType.NOTHING_FOUND -> renderState(InfoScreenState.NothingFound)
             ErrorType.LIMIT_ERROR -> renderState(InfoScreenState.LimitError)
             else -> renderState(InfoScreenState.ServerError)
-        }
-    }
-
-    fun onClearIconClick() {
-        viewModelScope.launch {
-            renderState(InfoScreenState.Default)
         }
     }
 

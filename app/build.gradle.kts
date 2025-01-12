@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
+    id("androidx.room")
 }
 
 android {
@@ -39,7 +40,9 @@ android {
         buildConfig = true
         viewBinding = true
     }
-
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -64,4 +67,9 @@ dependencies {
     // Navigation
     implementation(libs.navigation.fragmentKtx)
     implementation(libs.navigation.uiKtx)
+
+    // Database
+    implementation(libs.db.roomRuntime)
+    annotationProcessor(libs.db.roomCompiler)
+    implementation(libs.db.roomKtx)
 }

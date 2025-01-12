@@ -1,13 +1,17 @@
-package com.example.bin_info.info.domain.model
+package com.example.bin_info.history.data.entity
 
-data class Info(
+import androidx.room.Entity
+
+@Entity(tableName = "history")
+data class HistoryEntity(
+    val bin: String,
     val scheme: String?, // Тип карты (visa, mastercard)
     val type: String?, // Дебетовая/кредитная
     val brand: String?, // Бренд карты
-    val prepaid: Boolean?, // Предоплаченная карта
+    val prepaid: String?, // Предоплаченная карта
     val countryName: String?, // Название страны
-    val countryLatitude: Double?, // Широта
-    val countryLongitude: Double?, // Долгота
+    val countryLatitude: String?, // Широта
+    val countryLongitude: String?, // Долгота
     val bankName: String?, // Название банка
     val bankUrl: String?, // Сайт
     val bankPhone: String?, // Телефон

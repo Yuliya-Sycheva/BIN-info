@@ -12,6 +12,7 @@ constraintlayout = "2.2.0"
 retrofit = "2.11.0"
 koin = "3.4.2"
 nav = "2.8.1"
+room = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,9 @@ koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation",
 navigation-fragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "nav" }
 navigation-uiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "nav" }
 navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "nav" }
+db-roomRuntime = { module = "androidx.room:room-runtime", version.ref = "room" }
+db-roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+db-roomKtx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -27,8 +27,6 @@ class RetrofitNetworkClient(
             return withContext(ioDispatcher) {
                 try {
                     val apiResponse = api.getBinInfo(dto.number)
-                    Log.d("API_RESPONSE", "Raw Response: ${apiResponse.toString()}")
-                    Log.d("API_RESPONSE", "Bank Info: ${apiResponse.bank}")
                     apiResponse.apply { resultCode = ResultCode.SUCCESS }
                 } catch (ex: HttpException) {
                     Log.e(TAG, "HTTP error: ${ex.message()}", ex)
