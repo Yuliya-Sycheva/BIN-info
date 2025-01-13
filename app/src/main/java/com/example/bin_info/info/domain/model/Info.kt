@@ -1,6 +1,7 @@
 package com.example.bin_info.info.domain.model
 
 data class Info(
+    val bin: String,
     val scheme: String, // Тип карты (visa, mastercard)
     val type: String, // Дебетовая/кредитная
     val brand: String, // Бренд карты

@@ -5,6 +5,7 @@ import com.example.bin_info.common.db.AppDatabase
 import com.example.bin_info.history.domain.HistoryRepository
 import com.example.bin_info.info.domain.model.Info
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class HistoryRepositoryImpl(
     private val appDatabase: AppDatabase,
@@ -15,7 +16,8 @@ class HistoryRepositoryImpl(
     }
 
     override fun getHistory(): Flow<List<Info>> {
-        TODO("Not yet implemented")
+        return appDatabase.historyDao().getAllHistory().map {
+            it.map { entity -> infoConverter.convert(entity) }
+        }
     }
-
 }

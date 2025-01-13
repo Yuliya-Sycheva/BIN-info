@@ -1,8 +1,5 @@
 package com.example.bin_info.info.ui
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.bin_info.R
+import com.example.bin_info.common.util.Functions
 import com.example.bin_info.databinding.FragmentInfoBinding
 import com.example.bin_info.info.domain.model.Info
 import com.example.bin_info.info.presentation.InfoViewModel
@@ -116,6 +113,7 @@ class InfoFragment : Fragment() {
             is InfoScreenState.Loading -> showLoading()
             is InfoScreenState.Default -> showDefault()
             is InfoScreenState.Content -> showContent(state.info)
+            else -> {}
         }
     }
 
@@ -170,7 +168,7 @@ class InfoFragment : Fragment() {
             tvCoordinates.text =
                 getString(
                     R.string.coordinates,
-                    formatCoordinates(info.countryLatitude, info.countryLongitude)
+                    Functions.formatCoordinates(info.countryLatitude, info.countryLongitude)
                 )
             tvCoordinates.setOnClickListener {
                 infoViewModel.handleCoordinatesClick(requireContext(), info)
@@ -179,14 +177,6 @@ class InfoFragment : Fragment() {
             tvBankUrl.text = getString(R.string.bank_url, info.bankUrl?: "-")
             tvBankPhone.text = getString(R.string.bank_phone, info.bankPhone?: "-")
             tvBankCity.text = getString(R.string.bank_city, info.bankCity)
-        }
-    }
-
-    private fun formatCoordinates(latitude: String?, longitude: String?): String {
-        return if (latitude != null && longitude != null) {
-            "Lat: $latitude, Lon: $longitude"
-        } else {
-            "-"
         }
     }
 

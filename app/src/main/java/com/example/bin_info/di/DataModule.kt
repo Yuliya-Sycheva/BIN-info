@@ -37,5 +37,5 @@ val dataModule = module {
     }
 
     // Converters
-    factory { InfoConverter(context = androidContext()) }
+    factory { InfoConverter() }
 }

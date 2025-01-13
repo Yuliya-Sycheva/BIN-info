@@ -2,6 +2,7 @@
     <string name="app_name">BIN_info</string>
     <string name="enter_request_hint">Введите номер карты</string>
     <string name="info_title">Информация по номеру карты</string>
+    <string name="history_title">История запросов</string>
     <string name="no_internet">Нет интернета</string>
     <string name="server_error">Ошибка сервера</string>
     <string name="limit_error">Превышен лимит запросов</string>
@@ -18,7 +19,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="cards_in_history">Посмотреть сохраненные карты </string>
-
     <string name="no_maps_app_found">Приложения с картами не найдены</string>
     <string name="invalid_coordinates">Некоорректные координаты</string>
 

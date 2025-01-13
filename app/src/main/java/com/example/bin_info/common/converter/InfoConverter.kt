@@ -5,7 +5,22 @@ import com.example.bin_info.history.data.entity.HistoryEntity
 import com.example.bin_info.info.data.dto.BINInfoResponse
 import com.example.bin_info.info.domain.model.Info
 
-class InfoConverter(context: Context) {
+class InfoConverter {
+    fun convert(entity: HistoryEntity): Info = Info(
+        bin = entity.bin,
+        scheme = entity.scheme,
+        type = entity.type,
+        brand = entity.brand,
+        prepaid = entity.prepaid,
+        countryName = entity.countryName,
+        countryLatitude = entity.countryLatitude,
+        countryLongitude = entity.countryLongitude,
+        bankName = entity.bankName,
+        bankUrl = entity.bankUrl,
+        bankPhone = entity.bankPhone,
+        bankCity = entity.bankCity
+    )
+
     fun convert(info: Info, bin: String): HistoryEntity = HistoryEntity(
         bin = bin,
         scheme = info.scheme,
@@ -22,6 +37,7 @@ class InfoConverter(context: Context) {
     )
 
     fun convert(binInfoResponse: BINInfoResponse): Info = Info(
+        bin = "",
         scheme = binInfoResponse.scheme ?: "-",
         type = binInfoResponse.type ?: "-",
         brand = binInfoResponse.brand ?: "-",
