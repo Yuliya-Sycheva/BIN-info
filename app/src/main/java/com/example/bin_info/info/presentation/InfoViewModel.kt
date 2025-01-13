@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bin_info.R
+import com.example.bin_info.history.domain.HistoryInteractor
 import com.example.bin_info.info.domain.api.InfoInteractor
 import com.example.bin_info.info.domain.model.ErrorType
 import com.example.bin_info.info.domain.model.Info
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class InfoViewModel(
     private val infoInteractor: InfoInteractor,
+    private val historyInteractor: HistoryInteractor
 ) : ViewModel() {
 
     private var searchDebounceJob: Job? = null
@@ -65,12 +67,13 @@ class InfoViewModel(
         }
     }
 
-    private fun processResult(
+    private suspend fun processResult(
         info: Info?,
         errorType: ErrorType?
     ) {
         if (info != null) {
             renderState(InfoScreenState.Content(info = info))
+            historyInteractor.addInfoToHistory(info, latestSearchNumber!!)
         }
         else if (errorType != null) {
                 handleError(errorType)

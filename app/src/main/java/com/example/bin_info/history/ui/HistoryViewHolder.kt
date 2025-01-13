@@ -11,7 +11,8 @@ class HistoryViewHolder(private val binding: ItemListBinding) :
 
     fun bind(info: Info) {
         with(binding) {
-            tvScheme.text = root.context.getString(R.string.card_type, info.scheme)
+            tvBin.text = root.context.getString(R.string.bin, info.bin)
+            tvScheme.text = root.context.getString(R.string.card_scheme, info.scheme)
             tvCardType.text = root.context.getString(R.string.card_type, info.type)
             tvCardBrand.text = root.context.getString(R.string.card_brand, info.brand)
             tvPrepaid.text =

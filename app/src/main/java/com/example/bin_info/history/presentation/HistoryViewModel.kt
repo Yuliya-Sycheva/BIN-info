@@ -11,7 +11,7 @@ import com.example.bin_info.info.domain.model.Info
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HistoryViewModel(private val interactor: HistoryInteractor) : ViewModel() {
+class HistoryViewModel(private val historyInteractor: HistoryInteractor) : ViewModel() {
 
     private val historyStateLiveData = MutableLiveData<HistoryState>()
     fun observeState(): LiveData<HistoryState> = historyStateLiveData
@@ -19,7 +19,7 @@ class HistoryViewModel(private val interactor: HistoryInteractor) : ViewModel() 
     fun fillData() {
         try {
             viewModelScope.launch(Dispatchers.IO) {
-                interactor
+                historyInteractor
                     .getHistory()
                     .collect { cardInfo ->
                         processResult(cardInfo)
@@ -27,7 +27,7 @@ class HistoryViewModel(private val interactor: HistoryInteractor) : ViewModel() 
             }
         } catch (ex: SQLiteException) {
             renderState(HistoryState.Error)
-            Log.e("HistoryViewModel", "Ошибка: ${ex.message}")
+            Log.e("History", "Ошибка: ${ex.message}")
         }
     }
 

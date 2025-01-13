@@ -43,9 +43,18 @@ class InfoRepositoryImpl(
 }
 
 fun BINInfoResponse.isAllFieldsNull(): Boolean {
+    val isCountryNull = country?.let {
+        it.name == null && it.latitude == null && it.longitude == null
+    } ?: true
+
+    val isBankNull = bank?.let {
+        it.name == null && it.url == null && it.phone == null && it.city == null
+    } ?: true
+
     return scheme == null &&
             type == null &&
             brand == null &&
-            country == null &&
-            bank == null
+            prepaid == null &&
+            isCountryNull &&
+            isBankNull
 }

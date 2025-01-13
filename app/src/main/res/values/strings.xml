@@ -8,6 +8,7 @@
     <string name="limit_error">Превышен лимит запросов</string>
     <string name="nothing_found">Ничего не найдено</string>
     <string name="card_type">Тип карты: %1$s</string>
+    <string name="card_scheme">Схема: %1$s</string>
     <string name="card_brand">Бренд: %1$s</string>
     <string name="prepaid">Предоплаченная: %1$s</string>
     <string name="country">Страна: %1$s</string>
@@ -23,5 +24,6 @@
     <string name="invalid_coordinates">Некоорректные координаты</string>
     <string name="list_is_empty">История запросов пустая</string>
     <string name="no_info">Не удалось получить\nсписок карт</string>
+    <string name="bin">BIN: %1$s</string>
 
 </resources>

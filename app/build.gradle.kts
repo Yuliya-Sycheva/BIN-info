@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
     id("androidx.room")
+    kotlin("kapt")
 }
 
 android {
@@ -71,5 +72,6 @@ dependencies {
     // Database
     implementation(libs.db.roomRuntime)
     annotationProcessor(libs.db.roomCompiler)
+    kapt(libs.db.roomCompiler)
     implementation(libs.db.roomKtx)
 }

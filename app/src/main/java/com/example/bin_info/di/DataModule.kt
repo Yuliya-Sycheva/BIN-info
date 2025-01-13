@@ -1,6 +1,9 @@
 package com.example.bin_info.di
 
+import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import com.example.bin_info.common.converter.InfoConverter
+import com.example.bin_info.common.db.AppDatabase
 import com.example.bin_info.info.data.network.BINlistAPI
 import com.example.bin_info.info.data.network.NetworkClient
 import com.example.bin_info.info.data.network.RetrofitNetworkClient
@@ -29,6 +32,18 @@ val dataModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(BINlistAPI::class.java)
+    }
+
+//    single {
+//        databaseBuilder(androidContext(), AppDatabase::class.java, "database.db")
+//            .fallbackToDestructiveMigration()
+//            .build()
+//    }
+
+    single {
+        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database.db")
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     // Dispatchers

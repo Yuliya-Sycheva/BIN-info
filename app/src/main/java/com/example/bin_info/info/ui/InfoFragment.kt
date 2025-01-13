@@ -155,7 +155,7 @@ class InfoFragment : Fragment() {
             searchResultBinding.cvSearchResult.isVisible = true
             searchResultBinding.tvBin.isVisible = false
             tvError.isVisible = false
-            searchResultBinding.tvScheme.text = getString(R.string.card_type, info.scheme)
+            searchResultBinding.tvScheme.text = getString(R.string.card_scheme, info.scheme)
             searchResultBinding.tvCardType.text = getString(R.string.card_type, info.type)
             searchResultBinding.tvCardBrand.text = getString(R.string.card_brand, info.brand)
             searchResultBinding.tvPrepaid.text =
