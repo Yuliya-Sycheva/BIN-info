@@ -19,7 +19,7 @@
     <string name="no">No</string>
     <string name="cards_in_history">Посмотреть сохраненные карты </string>
 
-    <string name="no_maps_app_found">No Maps app found</string>
-    <string name="invalid_coordinates">Invalid coordinates</string>
+    <string name="no_maps_app_found">Приложения с картами не найдены</string>
+    <string name="invalid_coordinates">Некоорректные координаты</string>
 
 </resources>

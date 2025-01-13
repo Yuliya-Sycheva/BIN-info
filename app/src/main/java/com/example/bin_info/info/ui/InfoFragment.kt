@@ -33,6 +33,7 @@ class InfoFragment : Fragment() {
         _binding = FragmentInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -153,52 +154,39 @@ class InfoFragment : Fragment() {
             progressBar.isVisible = false
             cvSearchResult.isVisible = true
             tvError.isVisible = false
-            tvScheme.text = getString(R.string.card_type, info.scheme ?: "-")
-            tvCardType.text = getString(R.string.card_type, info.type ?: "-")
-            tvCardBrand.text = getString(R.string.card_brand, info.brand ?: "-")
+            tvScheme.text = getString(R.string.card_type, info.scheme)
+            tvCardType.text = getString(R.string.card_type, info.type)
+            tvCardBrand.text = getString(R.string.card_brand, info.brand)
             tvPrepaid.text =
                 getString(
                     R.string.prepaid,
-                    if (info.prepaid == true) getString(R.string.yes) else getString(R.string.no)
+                    if (info.prepaid != null) {
+                        if (info.prepaid == true) getString(R.string.yes) else getString(R.string.no)
+                    } else {
+                        "-"
+                    }
                 )
-            tvCountry.text = getString(R.string.country, info.countryName ?: "-")
+            tvCountry.text = getString(R.string.country, info.countryName)
             tvCoordinates.text =
                 getString(
                     R.string.coordinates,
                     formatCoordinates(info.countryLatitude, info.countryLongitude)
                 )
             tvCoordinates.setOnClickListener {
-                handleCoordinatesClick(requireContext(), info)
+                infoViewModel.handleCoordinatesClick(requireContext(), info)
             }
-            tvBankName.text = getString(R.string.bank, info.bankName ?: "-")
-            tvBankUrl.text = getString(R.string.bank_url, info.bankUrl ?: "-")
-            tvBankPhone.text = getString(R.string.bank_phone, info.bankPhone ?: "-")
-            tvBankCity.text = getString(R.string.bank_city, info.bankCity ?: "-")
+            tvBankName.text = getString(R.string.bank, info.bankName)
+            tvBankUrl.text = getString(R.string.bank_url, info.bankUrl?: "-")
+            tvBankPhone.text = getString(R.string.bank_phone, info.bankPhone?: "-")
+            tvBankCity.text = getString(R.string.bank_city, info.bankCity)
         }
     }
 
-    private fun formatCoordinates(latitude: Double?, longitude: Double?): String {
+    private fun formatCoordinates(latitude: String?, longitude: String?): String {
         return if (latitude != null && longitude != null) {
             "Lat: $latitude, Lon: $longitude"
         } else {
             "-"
-        }
-    }
-    private fun handleCoordinatesClick(context: Context, info: Info) {
-        val latitude = info.countryLatitude
-        val longitude = info.countryLongitude
-
-        if (latitude != null && longitude != null) {
-            val geoUri = "geo:$latitude,$longitude?q=$latitude,$longitude"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
-
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
-            } else {
-                Toast.makeText(context, R.string.no_maps_app_found, Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(context, R.string.invalid_coordinates, Toast.LENGTH_SHORT).show()
         }
     }
 

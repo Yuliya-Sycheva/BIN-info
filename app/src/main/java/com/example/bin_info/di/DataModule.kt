@@ -1,5 +1,6 @@
 package com.example.bin_info.di
 
+import com.example.bin_info.common.converter.InfoConverter
 import com.example.bin_info.info.data.network.BINlistAPI
 import com.example.bin_info.info.data.network.NetworkClient
 import com.example.bin_info.info.data.network.RetrofitNetworkClient
@@ -30,12 +31,11 @@ val dataModule = module {
             .create(BINlistAPI::class.java)
     }
 
-    single {
-        Gson()
-    }
-
-    // Converters
+    // Dispatchers
     single<CoroutineDispatcher>(named("ioDispatcher")) {
         Dispatchers.IO
     }
+
+    // Converters
+    factory { InfoConverter(context = androidContext()) }
 }

@@ -1,9 +1,14 @@
 package com.example.bin_info.info.presentation
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bin_info.R
 import com.example.bin_info.info.domain.api.InfoInteractor
 import com.example.bin_info.info.domain.model.ErrorType
 import com.example.bin_info.info.domain.model.Info
@@ -85,6 +90,24 @@ class InfoViewModel(
             ErrorType.NOTHING_FOUND -> renderState(InfoScreenState.NothingFound)
             ErrorType.LIMIT_ERROR -> renderState(InfoScreenState.LimitError)
             else -> renderState(InfoScreenState.ServerError)
+        }
+    }
+
+    fun handleCoordinatesClick(context: Context, info: Info) {
+        val latitude = info.countryLatitude
+        val longitude = info.countryLongitude
+
+        if (latitude != null && longitude != null) {
+            val geoUri = "geo:$latitude,$longitude?q=$latitude,$longitude"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            } else {
+                Toast.makeText(context, R.string.no_maps_app_found, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, R.string.invalid_coordinates, Toast.LENGTH_SHORT).show()
         }
     }
 

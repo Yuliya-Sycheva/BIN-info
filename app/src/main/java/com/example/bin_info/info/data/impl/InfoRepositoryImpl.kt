@@ -1,5 +1,6 @@
 package com.example.bin_info.info.data.impl
 
+import com.example.bin_info.common.converter.InfoConverter
 import com.example.bin_info.info.data.dto.BINInfoRequest
 import com.example.bin_info.info.data.dto.BINInfoResponse
 import com.example.bin_info.info.data.network.NetworkClient
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.flowOn
 class InfoRepositoryImpl(
     private val networkClient: NetworkClient,
     private val ioDispatcher: CoroutineDispatcher,
+    private val infoConverter: InfoConverter
 ) : InfoRepository {
 
     override fun searchInfo(number: String): Flow<Resource<Info>> = flow {
@@ -26,7 +28,7 @@ class InfoRepositoryImpl(
                 if (binInfoResponse.isAllFieldsNull()) {
                     emit(Resource.Error(ErrorType.NOTHING_FOUND))
                 } else {
-                    emit(Resource.Success(binInfoResponse.toInfo()))
+                    emit(Resource.Success(infoConverter.convert(binInfoResponse)))
                 }
             }
 
@@ -46,20 +48,4 @@ fun BINInfoResponse.isAllFieldsNull(): Boolean {
             brand == null &&
             country == null &&
             bank == null
-}
-
-fun BINInfoResponse.toInfo(): Info {
-    return Info(
-        scheme = scheme,
-        type = type,
-        brand = brand,
-        prepaid = prepaid,
-        countryName = country?.name,
-        countryLongitude = country?.longitude,
-        countryLatitude = country?.latitude,
-        bankName = bank?.name,
-        bankUrl = bank?.url,
-        bankPhone = bank?.phone,
-        bankCity = bank?.city,
-    )
 }
