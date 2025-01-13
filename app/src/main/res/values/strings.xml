@@ -21,5 +21,7 @@
     <string name="cards_in_history">Посмотреть сохраненные карты </string>
     <string name="no_maps_app_found">Приложения с картами не найдены</string>
     <string name="invalid_coordinates">Некоорректные координаты</string>
+    <string name="list_is_empty">История запросов пустая</string>
+    <string name="no_info">Не удалось получить\nсписок карт</string>
 
 </resources>

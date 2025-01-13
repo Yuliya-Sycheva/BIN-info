@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.bin_info.R
 import com.example.bin_info.common.util.Functions
 import com.example.bin_info.databinding.FragmentInfoBinding
+import com.example.bin_info.databinding.ItemListBinding
 import com.example.bin_info.info.domain.model.Info
 import com.example.bin_info.info.presentation.InfoViewModel
 import com.example.bin_info.info.ui.models.InfoScreenState
@@ -22,6 +23,7 @@ class InfoFragment : Fragment() {
     private var _binding: FragmentInfoBinding? = null
     private val binding get() = _binding!!
     private val infoViewModel by viewModel<InfoViewModel>()
+    private lateinit var searchResultBinding: ItemListBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +35,7 @@ class InfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        searchResultBinding = ItemListBinding.bind(binding.includeSearchResult.root)
         initQueryChangeListener()
         initClickListeners()
         binding.tvCardsInHistory.setOnClickListener {
@@ -86,7 +88,7 @@ class InfoFragment : Fragment() {
                 etSearchRequest.apply {
                     setText("")
                 }
-                cvSearchResult.isVisible = false
+                searchResultBinding.cvSearchResult.isVisible = false
                 tvError.isVisible = false
             }
         }
@@ -120,7 +122,7 @@ class InfoFragment : Fragment() {
     private fun showLoading() {
         with(binding) {
             progressBar.isVisible = true
-            cvSearchResult.isVisible = false
+            searchResultBinding.cvSearchResult.isVisible = false
             tvError.isVisible = false
         }
     }
@@ -129,7 +131,7 @@ class InfoFragment : Fragment() {
         with(binding) {
             progressBar.isVisible = false
             ivClearRequest.isVisible = false
-            cvSearchResult.isVisible = false
+            searchResultBinding.cvSearchResult.isVisible = false
             tvError.isVisible = false
         }
     }
@@ -137,7 +139,7 @@ class InfoFragment : Fragment() {
     private fun showError(text: Int? = null) {
         with(binding) {
             progressBar.isVisible = false
-            cvSearchResult.isVisible = false
+            searchResultBinding.cvSearchResult.isVisible = false
             tvError.isVisible = true
             if (text == null) {
                 tvError.text = ""
@@ -150,12 +152,13 @@ class InfoFragment : Fragment() {
     private fun showContent(info: Info) {
         with(binding) {
             progressBar.isVisible = false
-            cvSearchResult.isVisible = true
+            searchResultBinding.cvSearchResult.isVisible = true
+            searchResultBinding.tvBin.isVisible = false
             tvError.isVisible = false
-            tvScheme.text = getString(R.string.card_type, info.scheme)
-            tvCardType.text = getString(R.string.card_type, info.type)
-            tvCardBrand.text = getString(R.string.card_brand, info.brand)
-            tvPrepaid.text =
+            searchResultBinding.tvScheme.text = getString(R.string.card_type, info.scheme)
+            searchResultBinding.tvCardType.text = getString(R.string.card_type, info.type)
+            searchResultBinding.tvCardBrand.text = getString(R.string.card_brand, info.brand)
+            searchResultBinding.tvPrepaid.text =
                 getString(
                     R.string.prepaid,
                     if (info.prepaid != null) {
@@ -164,19 +167,20 @@ class InfoFragment : Fragment() {
                         "-"
                     }
                 )
-            tvCountry.text = getString(R.string.country, info.countryName)
-            tvCoordinates.text =
+            searchResultBinding.tvCountry.text = getString(R.string.country, info.countryName)
+            searchResultBinding.tvCoordinates.text =
                 getString(
                     R.string.coordinates,
                     Functions.formatCoordinates(info.countryLatitude, info.countryLongitude)
                 )
-            tvCoordinates.setOnClickListener {
+            searchResultBinding.tvCoordinates.setOnClickListener {
                 infoViewModel.handleCoordinatesClick(requireContext(), info)
             }
-            tvBankName.text = getString(R.string.bank, info.bankName)
-            tvBankUrl.text = getString(R.string.bank_url, info.bankUrl?: "-")
-            tvBankPhone.text = getString(R.string.bank_phone, info.bankPhone?: "-")
-            tvBankCity.text = getString(R.string.bank_city, info.bankCity)
+            searchResultBinding.tvBankName.text = getString(R.string.bank, info.bankName)
+            searchResultBinding.tvBankUrl.text = getString(R.string.bank_url, info.bankUrl ?: "-")
+            searchResultBinding.tvBankPhone.text =
+                getString(R.string.bank_phone, info.bankPhone ?: "-")
+            searchResultBinding.tvBankCity.text = getString(R.string.bank_city, info.bankCity)
         }
     }
 

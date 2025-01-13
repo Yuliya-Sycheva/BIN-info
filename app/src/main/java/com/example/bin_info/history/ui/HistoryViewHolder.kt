@@ -3,10 +3,10 @@ package com.example.bin_info.history.ui
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bin_info.R
 import com.example.bin_info.common.util.Functions
-import com.example.bin_info.databinding.HistoryItemListBinding
+import com.example.bin_info.databinding.ItemListBinding
 import com.example.bin_info.info.domain.model.Info
 
-class HistoryViewHolder(private val binding: HistoryItemListBinding) :
+class HistoryViewHolder(private val binding: ItemListBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(info: Info) {
