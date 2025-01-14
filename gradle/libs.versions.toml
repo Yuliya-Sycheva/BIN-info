@@ -9,6 +9,10 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.8.0"
 constraintlayout = "2.2.0"
+retrofit = "2.11.0"
+koin = "3.4.2"
+nav = "2.8.1"
+room = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -19,6 +23,16 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+network-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+network-converterGson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin" }
+navigation-fragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "nav" }
+navigation-uiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "nav" }
+navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "nav" }
+db-roomRuntime = { module = "androidx.room:room-runtime", version.ref = "room" }
+db-roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+db-roomKtx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

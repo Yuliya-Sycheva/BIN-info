@@ -1,11 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
+    id("androidx.room")
+    kotlin("kapt")
 }
 
 android {
     namespace = "com.example.bin_info"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.bin_info"
@@ -33,6 +36,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -45,4 +56,22 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Network
+    implementation(libs.network.retrofit)
+    implementation(libs.network.converterGson)
+
+    // Dependency Injection
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.navigation)
+
+    // Navigation
+    implementation(libs.navigation.fragmentKtx)
+    implementation(libs.navigation.uiKtx)
+
+    // Database
+    implementation(libs.db.roomRuntime)
+    annotationProcessor(libs.db.roomCompiler)
+    kapt(libs.db.roomCompiler)
+    implementation(libs.db.roomKtx)
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".info.ui.InfoFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar_Style"
+        app:title="@string/info_title">
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_field_height"
+        android:layout_marginHorizontal="@dimen/margin_standard"
+        android:layout_marginVertical="@dimen/margin_small">
+
+        <EditText
+            android:id="@+id/et_search_request"
+            style="@style/EditText_Style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/enter_request_hint"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no" />
+
+        <ImageButton
+            android:id="@+id/iv_clear_request"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginHorizontal="@dimen/margin_standard"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/ic_clear" />
+    </FrameLayout>
+
+    <include
+        android:id="@+id/include_search_result"
+        layout="@layout/item_list" />
+
+    <TextView
+        android:id="@+id/tv_error"
+        style="@style/ErrorMessageStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:text="@string/no_internet"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_standard"
+        android:indeterminateTint="@color/lilac" />
+
+    <TextView
+        android:id="@+id/tv_cards_in_history"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/header_height"
+        android:text="@string/cards_in_history" />
+</LinearLayout>

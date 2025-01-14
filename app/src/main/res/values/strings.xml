@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">BIN_info</string>
+    <string name="enter_request_hint">Введите номер карты</string>
+    <string name="info_title">Информация по номеру карты</string>
+    <string name="history_title">История запросов</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="limit_error">Превышен лимит запросов</string>
+    <string name="nothing_found">Ничего не найдено</string>
+    <string name="card_type">Тип карты: %1$s</string>
+    <string name="card_scheme">Схема: %1$s</string>
+    <string name="card_brand">Бренд: %1$s</string>
+    <string name="prepaid">Предоплаченная: %1$s</string>
+    <string name="country">Страна: %1$s</string>
+    <string name="coordinates">Координаты: %1$s</string>
+    <string name="bank">Банк: %1$s</string>
+    <string name="bank_url">URL банка: %1$s</string>
+    <string name="bank_phone">Телефон банка: %1$s</string>
+    <string name="bank_city">Город банка: %1$s</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cards_in_history">Посмотреть сохраненные карты </string>
+    <string name="no_maps_app_found">Приложения с картами не найдены</string>
+    <string name="no_phone_app_found">Приложения для совершения звонков не найдены</string>
+    <string name="no_browser_app_found">Браузеры не найдены</string>
+    <string name="invalid_coordinates">Некорректные координаты</string>
+    <string name="invalid_url">Некоорректная ссылка</string>
+    <string name="invalid_phone">Некорректный номер телефона</string>
+    <string name="list_is_empty">История запросов пустая</string>
+    <string name="no_info">Не удалось получить\nсписок карт</string>
+    <string name="bin">BIN: %1$s</string>
+    <string name="permission_denied">Нет разрешения</string>
+
 </resources>
