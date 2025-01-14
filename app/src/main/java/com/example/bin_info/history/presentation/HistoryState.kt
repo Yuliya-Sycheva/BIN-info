@@ -6,7 +6,5 @@ sealed interface HistoryState {
     data object Empty : HistoryState
 
     data object Error : HistoryState
-    data class Content(
-        val history: List<Info>
-    ) : HistoryState
+    data class Content(val history: List<Info>) : HistoryState
 }

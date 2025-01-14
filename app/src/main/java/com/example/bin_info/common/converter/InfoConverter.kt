@@ -1,6 +1,5 @@
 package com.example.bin_info.common.converter
 
-import android.content.Context
 import com.example.bin_info.history.data.entity.HistoryEntity
 import com.example.bin_info.info.data.dto.BINInfoResponse
 import com.example.bin_info.info.domain.model.Info

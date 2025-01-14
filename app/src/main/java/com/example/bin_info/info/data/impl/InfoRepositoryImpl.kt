@@ -1,6 +1,7 @@
 package com.example.bin_info.info.data.impl
 
 import com.example.bin_info.common.converter.InfoConverter
+import com.example.bin_info.common.util.Resource
 import com.example.bin_info.info.data.dto.BINInfoRequest
 import com.example.bin_info.info.data.dto.BINInfoResponse
 import com.example.bin_info.info.data.network.NetworkClient
@@ -8,7 +9,6 @@ import com.example.bin_info.info.data.network.ResultCode
 import com.example.bin_info.info.domain.api.InfoRepository
 import com.example.bin_info.info.domain.model.ErrorType
 import com.example.bin_info.info.domain.model.Info
-import com.example.bin_info.common.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

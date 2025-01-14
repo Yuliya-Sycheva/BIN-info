@@ -7,7 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.bin_info.R
 import com.example.bin_info.databinding.ActivityRootBinding
 
-class RootActivity: AppCompatActivity() {
+class RootActivity : AppCompatActivity() {
     private val navController: NavController by lazy {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.rootFragmentContainerView) as NavHostFragment

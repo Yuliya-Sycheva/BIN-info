@@ -12,6 +12,6 @@ interface HistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHistory(history: HistoryEntity)
 
-    @Query("SELECT * FROM history ORDER BY bin DESC")
+    @Query("SELECT * FROM history ORDER BY bin ASC")
     fun getAllHistory(): Flow<List<HistoryEntity>>
 }

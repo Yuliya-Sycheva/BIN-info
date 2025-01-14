@@ -40,8 +40,8 @@
     </FrameLayout>
 
     <include
-        layout="@layout/item_list"
-        android:id="@+id/include_search_result" />
+        android:id="@+id/include_search_result"
+        layout="@layout/item_list" />
 
     <TextView
         android:id="@+id/tv_error"

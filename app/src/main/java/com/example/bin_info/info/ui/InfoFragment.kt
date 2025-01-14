@@ -1,5 +1,7 @@
 package com.example.bin_info.info.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,6 +28,18 @@ class InfoFragment : Fragment() {
     private var _binding: FragmentInfoBinding? = null
     private val binding get() = _binding!!
     private val infoViewModel by viewModel<InfoViewModel>()
+    private var phoneNumberToCall: String? = null
+    private val requestPhonePermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                phoneNumberToCall?.let {
+                    infoViewModel.openPhone(it)
+                }
+            } else {
+                Toast.makeText(requireContext(), R.string.permission_denied, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     private lateinit var searchResultBinding: ItemListBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -174,12 +191,18 @@ class InfoFragment : Fragment() {
                     Functions.formatCoordinates(info.countryLatitude, info.countryLongitude)
                 )
             searchResultBinding.tvCoordinates.setOnClickListener {
-                infoViewModel.handleCoordinatesClick(requireContext(), info)
+                openMap(info.countryLatitude, info.countryLongitude)
             }
             searchResultBinding.tvBankName.text = getString(R.string.bank, info.bankName)
             searchResultBinding.tvBankUrl.text = getString(R.string.bank_url, info.bankUrl ?: "-")
+            searchResultBinding.tvBankUrl.setOnClickListener {
+                openUrl(info.bankUrl)
+            }
             searchResultBinding.tvBankPhone.text =
                 getString(R.string.bank_phone, info.bankPhone ?: "-")
+            searchResultBinding.tvBankPhone.setOnClickListener {
+                openPhone(info.bankPhone)
+            }
             searchResultBinding.tvBankCity.text = getString(R.string.bank_city, info.bankCity)
         }
     }
@@ -187,5 +210,38 @@ class InfoFragment : Fragment() {
     private fun openHistory() {
         val action = InfoFragmentDirections.actionInfoFragmentToHistoryFragment()
         findNavController().navigate(action)
+    }
+
+    private fun openMap(latitude: String?, longitude: String?) {
+        if (latitude != null && longitude != null) {
+            infoViewModel.openMap(latitude, longitude)
+        } else {
+            Toast.makeText(context, R.string.invalid_coordinates, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openUrl(url: String?) {
+        if (url != null) {
+            infoViewModel.openUrl(url)
+        } else {
+            Toast.makeText(context, R.string.invalid_url, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openPhone(phone: String?) {
+        phoneNumberToCall = phone
+        if (phone != null) {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CALL_PHONE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                infoViewModel.openPhone(phone)
+            } else {
+                requestPhonePermission.launch(Manifest.permission.CALL_PHONE)
+            }
+        } else {
+            Toast.makeText(context, R.string.invalid_phone, Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.bin_info.history.presentation
 
 import android.database.sqlite.SQLiteException
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,7 +26,6 @@ class HistoryViewModel(private val historyInteractor: HistoryInteractor) : ViewM
             }
         } catch (ex: SQLiteException) {
             renderState(HistoryState.Error)
-            Log.e("History", "Ошибка: ${ex.message}")
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.bin_info.history.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,11 +42,6 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         binding.rvHistoryList.adapter = null
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        viewModel.fillData()
-//    }
-
     private fun render(state: HistoryState) {
         when (state) {
             is HistoryState.Empty -> showEmpty()
@@ -70,13 +66,13 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun showContent(cardsInfo: List<Info>) {
         binding.rvHistoryList.isVisible = true
         binding.tvError.isVisible = false
-        historyAdapter?.notifyDataSetChanged()
 
-      historyAdapter?.cards?.clear()
-      historyAdapter?.cards?.addAll(cardsInfo)
-      historyAdapter?.notifyDataSetChanged()
+        historyAdapter?.cards?.clear()
+        historyAdapter?.cards?.addAll(cardsInfo)
+        historyAdapter?.notifyDataSetChanged()
     }
 }

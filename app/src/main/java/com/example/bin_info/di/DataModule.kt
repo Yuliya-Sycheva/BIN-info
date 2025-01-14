@@ -1,16 +1,13 @@
 package com.example.bin_info.di
 
 import androidx.room.Room
-import androidx.room.Room.databaseBuilder
 import com.example.bin_info.common.converter.InfoConverter
 import com.example.bin_info.common.db.AppDatabase
 import com.example.bin_info.info.data.network.BINlistAPI
 import com.example.bin_info.info.data.network.NetworkClient
 import com.example.bin_info.info.data.network.RetrofitNetworkClient
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -23,7 +20,11 @@ val dataModule = module {
 
     // Network
     single<NetworkClient> {
-        RetrofitNetworkClient(api = get(), context = androidContext(), ioDispatcher = get(named("ioDispatcher")))
+        RetrofitNetworkClient(
+            api = get(),
+            context = androidContext(),
+            ioDispatcher = get(named("ioDispatcher"))
+        )
     }
 
     single<BINlistAPI> {
@@ -33,12 +34,6 @@ val dataModule = module {
             .build()
             .create(BINlistAPI::class.java)
     }
-
-//    single {
-//        databaseBuilder(androidContext(), AppDatabase::class.java, "database.db")
-//            .fallbackToDestructiveMigration()
-//            .build()
-//    }
 
     single {
         Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database.db")

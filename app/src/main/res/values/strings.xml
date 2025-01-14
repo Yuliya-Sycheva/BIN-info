@@ -21,9 +21,14 @@
     <string name="no">No</string>
     <string name="cards_in_history">Посмотреть сохраненные карты </string>
     <string name="no_maps_app_found">Приложения с картами не найдены</string>
+    <string name="no_phone_app_found">Приложения для совершения звонков не найдены</string>
+    <string name="no_browser_app_found">Браузеры не найдены</string>
     <string name="invalid_coordinates">Некоорректные координаты</string>
+    <string name="invalid_url">Некоорректная ссылка</string>
+    <string name="invalid_phone">Некоорректный номер телефона</string>
     <string name="list_is_empty">История запросов пустая</string>
     <string name="no_info">Не удалось получить\nсписок карт</string>
     <string name="bin">BIN: %1$s</string>
+    <string name="permission_denied">Нет разрешения</string>
 
 </resources>

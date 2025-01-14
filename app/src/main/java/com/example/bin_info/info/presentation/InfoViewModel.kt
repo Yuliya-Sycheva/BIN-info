@@ -1,14 +1,10 @@
 package com.example.bin_info.info.presentation
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bin_info.R
+import com.example.bin_info.external.domain.ExternalInteractor
 import com.example.bin_info.history.domain.HistoryInteractor
 import com.example.bin_info.info.domain.api.InfoInteractor
 import com.example.bin_info.info.domain.model.ErrorType
@@ -20,7 +16,8 @@ import kotlinx.coroutines.launch
 
 class InfoViewModel(
     private val infoInteractor: InfoInteractor,
-    private val historyInteractor: HistoryInteractor
+    private val historyInteractor: HistoryInteractor,
+    private val externalInteractor: ExternalInteractor,
 ) : ViewModel() {
 
     private var searchDebounceJob: Job? = null
@@ -96,22 +93,16 @@ class InfoViewModel(
         }
     }
 
-    fun handleCoordinatesClick(context: Context, info: Info) {
-        val latitude = info.countryLatitude
-        val longitude = info.countryLongitude
+    fun openMap(latitude : String, longitude: String) {
+            externalInteractor.openMap(latitude, longitude)
+    }
 
-        if (latitude != null && longitude != null) {
-            val geoUri = "geo:$latitude,$longitude?q=$latitude,$longitude"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+    fun openUrl(url: String) {
+        externalInteractor.openUrl(url)
+    }
 
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
-            } else {
-                Toast.makeText(context, R.string.no_maps_app_found, Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(context, R.string.invalid_coordinates, Toast.LENGTH_SHORT).show()
-        }
+    fun openPhone(phone: String) {
+        externalInteractor.openPhone(phone)
     }
 
     companion object {

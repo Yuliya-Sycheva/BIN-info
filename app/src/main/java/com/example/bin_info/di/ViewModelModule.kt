@@ -8,7 +8,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     viewModel {
-        InfoViewModel(infoInteractor = get(), historyInteractor = get())
+        InfoViewModel(infoInteractor = get(), historyInteractor = get(), externalInteractor = get())
     }
 
     viewModel {

@@ -1,10 +1,10 @@
 package com.example.bin_info.info.domain.impl
 
+import com.example.bin_info.common.util.Resource
 import com.example.bin_info.info.domain.api.InfoInteractor
 import com.example.bin_info.info.domain.api.InfoRepository
 import com.example.bin_info.info.domain.model.ErrorType
 import com.example.bin_info.info.domain.model.Info
-import com.example.bin_info.common.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
